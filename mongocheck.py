@@ -10,6 +10,8 @@ uri = st.secrets["uri"]
 # Create a new client and connect to the server
 client = MongoClient(uri)
 
+st.write(client)
+
 # Send a ping to confirm a successful connection
 try:
     client.admin.command('ping')
