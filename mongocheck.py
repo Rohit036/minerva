@@ -5,7 +5,7 @@ import pymongo
 from pymongo.mongo_client import MongoClient
 
 st.write("Hello")
-uri = st.secrets["uri"])
+uri = st.secrets["uri"]
 
 # Create a new client and connect to the server
 client = MongoClient(uri)
