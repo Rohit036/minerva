@@ -13,13 +13,13 @@ client = MongoClient(uri)
 # Send a ping to confirm a successful connection
 try:
     client.admin.command('ping')
-    print("Pinged your deployment. You successfully connected to MongoDB!")
+    st.write("Pinged your deployment. You successfully connected to MongoDB!")
     db = client.neuraldb
     people = db.people
     people.insert_one({"name" : "Mike", "age" : 30}) 
     people.insert_one({"name" : "Lisa", "age" : 20, "interestes" : ["C++", "Python"]}) 
 
     for person in people.find():
-        print(person)
+        st.write(person)
 except Exception as e:
     print(e)
