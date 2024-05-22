@@ -2,13 +2,19 @@ from datetime import datetime
 
 import os
 from pymongo import MongoClient
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 
-load_dotenv()
+
+# load_dotenv()
+
+import streamlit as st
 
 # mongo_uri = os.getenv("MONGO_URI")
-mongo_uri = os.getenv("uri")
-db_name = os.getenv("DB_NAME")
+# mongo_uri = os.getenv("uri")
+# db_name = os.getenv("DB_NAME")
+
+mongo_uri = st.secrets("uri")
+# db_name = os.getenv("DB_NAME")
 
 client = MongoClient(mongo_uri)
 db = client[db_name]
