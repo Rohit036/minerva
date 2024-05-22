@@ -13,12 +13,20 @@ with open('config.json', 'r') as f:
     dev = config["development"]
 
 if dev == True:
-    load_dotenv()
-    client = MongoClient(os.getenv("ATLAS_URI"))
-    db = client[os.getenv("DB_NAME")]
+    load_dotenv()    
+    try:
+        client = MongoClient(os.getenv("ATLAS_URI"))
+        db = client[os.getenv("DB_NAME")]  # Ensure you have 'mongo_uri' and 'db_name' in your config
+    except Exception as e:
+        st.error(f"Failed to connect to the database: {str(e)}")
+        raise SystemExit("Exiting: Database connection failed.")
 else:
-    client = MongoClient(st.secrets["ATLAS_URI"])
-    db = client[st.secrets["DB_NAME"]]
+    try:
+        client = MongoClient(st.secrets["ATLAS_URI"])
+        db = client[st.secrets["DB_NAME"]]
+    except Exception as e:
+        st.error(f"Failed to connect to the database: {str(e)}")
+        raise SystemExit("Exiting: Database connection failed.")
 
 conversations_collection = db.conversations
 

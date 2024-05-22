@@ -11,8 +11,15 @@ from utils import save_message, get_all_session_ids, get_chat_history_by_session
 
 import uuid
 
-with open('config.json', 'r') as f:
-    config = json.load(f)
+try:
+    with open('config.json', 'r') as f:
+        config = json.load(f)
+except FileNotFoundError:
+    st.error("Configuration file not found. Please ensure 'config.json' exists.")
+    raise SystemExit("Exiting: Configuration file not found.")
+except json.JSONDecodeError:
+    st.error("Configuration file is malformed. Please ensure it contains valid JSON.")
+    raise SystemExit("Exiting: Invalid JSON in configuration file.")
 
 # Define get_response function (assuming it's not defined elsewhere in the given code)
 def get_response(user_query, chat_history):
