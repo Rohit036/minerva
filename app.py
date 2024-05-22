@@ -33,7 +33,7 @@ def initialize_new_run():
 
 # app config
 st.set_page_config(page_title="AutoInsure Assistant", page_icon="🤖")
-st.title("AutoInsure Assistant HelpDesk")
+st.title("AutoInsure Assistant")
 st.subheader("Your go-to virtual assistant for quick car insurance quotes")
 
 # Initialize session state if not already set
