@@ -1,19 +1,23 @@
 import streamlit as st
 import os
+import json
 from datetime import datetime
 from pymongo import MongoClient
 from langchain_core.messages import AIMessage, HumanMessage
 from langchain_openai import ChatOpenAI
-from dotenv import load_dotenv
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate
 from utils import save_message, get_all_session_ids, get_chat_history_by_session_id
 
 import uuid
 
+with open('config.json', 'r') as f:
+    config = json.load(f)
+
 # Define get_response function (assuming it's not defined elsewhere in the given code)
 def get_response(user_query, chat_history):
-    template = os.getenv("CHAT_TEMPLATE", "Default prompt if not set in .env file")
+    # template = os.getenv("CHAT_TEMPLATE", "Default prompt if not set in .env file")
+    template = config["CHAT_TEMPLATE"]
     prompt = ChatPromptTemplate.from_template(template)
     llm = ChatOpenAI()
     chain = prompt | llm | StrOutputParser()
