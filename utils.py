@@ -14,7 +14,7 @@ import streamlit as st
 # db_name = os.getenv("DB_NAME")
 
 mongo_uri = st.secrets["uri"]
-# db_name = os.getenv("DB_NAME")
+db_name = os.getenv("DB_NAME")
 
 client = MongoClient(mongo_uri)
 db = client[db_name]
