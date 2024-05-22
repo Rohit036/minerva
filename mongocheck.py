@@ -1,27 +1,14 @@
-# streamlit_app.py
 
-import streamlit as st
-import pymongo
 from pymongo.mongo_client import MongoClient
 
-st.write("Hello")
-uri = st.secrets["uri"]
+uri = "mongodb+srv://rohitkrsingh:<password>@minerva.85la3cg.mongodb.net/?retryWrites=true&w=majority&appName=minerva"
 
 # Create a new client and connect to the server
 client = MongoClient(uri)
 
-st.write(client)
-
 # Send a ping to confirm a successful connection
 try:
     client.admin.command('ping')
-    st.write("Pinged your deployment. You successfully connected to MongoDB!")
-    db = client.neuraldb
-    people = db.people
-    people.insert_one({"name" : "Mike", "age" : 30}) 
-    people.insert_one({"name" : "Lisa", "age" : 20, "interestes" : ["C++", "Python"]}) 
-
-    for person in people.find():
-        st.write(person)
+    print("Pinged your deployment. You successfully connected to MongoDB!")
 except Exception as e:
     print(e)
