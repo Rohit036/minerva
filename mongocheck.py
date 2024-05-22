@@ -1,8 +1,8 @@
 import streamlit as st
 from pymongo.mongo_client import MongoClient
 
-uri = "mongodb+srv://rohitkrsingh:As_130012@minerva.85la3cg.mongodb.net/?retryWrites=true&w=majority&appName=minerva"
-
+# uri = "mongodb+srv://rohitkrsingh:As_130012@minerva.85la3cg.mongodb.net/?retryWrites=true&w=majority&appName=minerva"
+uri = st.secret["uri"]
 # Create a new client and connect to the server
 client = MongoClient(uri)
 print(client)
