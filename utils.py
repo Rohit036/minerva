@@ -17,7 +17,7 @@ if dev == True:
     client = MongoClient(os.getenv("ATLAS_URI"))
     db = client[os.getenv("DB_NAME")]
 else:
-    client = MongoClient(st.secrets["uri"])
+    client = MongoClient(st.secrets["ATLAS_URI"])
     db = client[st.secrets["DB_NAME"]]
 
 conversations_collection = db.conversations
