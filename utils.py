@@ -2,22 +2,23 @@ from datetime import datetime
 
 import os
 from pymongo import MongoClient
-# from dotenv import load_dotenv
-
-
-# load_dotenv()
-
+import json
+from dotenv import load_dotenv
 import streamlit as st
 
-# mongo_uri = os.getenv("MONGO_URI")
-# mongo_uri = os.getenv("uri")
-# db_name = os.getenv("DB_NAME")
 
-mongo_uri = st.secrets["uri"]
-db_name = st.secrets["DB_NAME"]
+# Load the configuration file
+with open('config.json', 'r') as f:
+    config = json.load(f)
+    dev = config["development"]
 
-client = MongoClient(mongo_uri)
-db = client[db_name]
+if dev == True:
+    load_dotenv()
+    client = MongoClient(os.getenv("ATLAS_URI"))
+    db = client[os.getenv("DB_NAME")]
+else:
+    client = MongoClient(st.secrets["uri"])
+    db = client[st.secrets["DB_NAME"]]
 
 conversations_collection = db.conversations
 
