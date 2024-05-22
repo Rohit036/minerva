@@ -13,5 +13,5 @@ try:
     print("Reached Here")
     st.write("Pinged your deployment. You successfully connected to MongoDB!")
 except Exception as e:
-    st.wrtie(e)
+    st.write(e)
     print(e)
