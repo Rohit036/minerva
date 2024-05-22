@@ -32,8 +32,8 @@ def initialize_new_run():
     st.session_state.chat_history = []  # Reset chat history
 
 # app config
-st.set_page_config(page_title="AutoInsure Assistant HelpDesk", page_icon="🤖")
-st.title("AutoInsure Assistant")
+st.set_page_config(page_title="AutoInsure Assistant", page_icon="🤖")
+st.title("AutoInsure Assistant HelpDesk")
 st.subheader("Your go-to virtual assistant for quick car insurance quotes")
 
 # Initialize session state if not already set
